@@ -21,7 +21,7 @@
         vcf-anchor-nav {
           opacity: 1;
           transition: opacity 0.5s;
-          --_anchor-nav-inner-max-width: 1000px;
+          --anchor-nav-inner-max-width: 1000px;
         }
         vcf-anchor-nav::part(tabs) {
           box-shadow: inset 0 -1px 0 0 var(--lumo-contrast-20pct);
@@ -53,22 +53,11 @@
     <script>
       window.addEventListener('WebComponentsReady', () => {
         document.querySelectorAll('.hidden').forEach(element => element.classList.remove('hidden'));
-        document.querySelectorAll('demo-snippet').forEach(element => {
-          const codeContainer = element.shadowRoot.querySelector('.code-container');
-          const copyButton = codeContainer.querySelector('#copyButton');
-          // Code Container max height
-          codeContainer.style.maxHeight = '600px';
-          // Sticky Copy Button
-          codeContainer.addEventListener('scroll', e => (copyButton.style.top = e.target.scrollTop + 'px'), {
-            capture: true,
-            passive: true
-          });
-        });
       });
     </script>
   </head>
   <body>
-    <vcf-anchor-nav fullscreen class="hidden">
+    <vcf-anchor-nav fullscreen class="hidden" theme="expand-last">
       <a slot="header" href="/api/#/elements/Vaadin.FormProgressViewer">
         <vaadin-button theme="tertiary" class="nav hidden">
           <iron-icon icon="lumo:angle-right" slot="suffix"></iron-icon>
@@ -78,42 +67,52 @@
 
       <h1 slot="header" class="hidden"><code class="main">&lt;form-progress-viewer&gt;</code></h1>
 
-      <vcf-anchor-nav-section name="Example 1">
+      <vcf-anchor-nav-section id="demo-1" name="Example 1">
         <h2 slot="header" class="hidden">Example 1</h2>
         <demo-snippet>
           <template>
-            <form-progress-viewer></form-progress-viewer>
+            <form-progress-viewer id="example-1"></form-progress-viewer>
             <script>
               window.addEventListener('WebComponentsReady', () => {
-                // Example 1
+                document.querySelector('#example-1').data = {
+                  nodes: [
+                    { id: 1, label: 'Form Page 1', type: 'start' },
+                    { id: 2, label: 'Form Page 2' },
+                    { id: 3, label: 'Form Page 3', type: 'end' }
+                  ],
+                  edges: [
+                    { from: '1', to: '2' },
+                    { from: '2', to: '3' }
+                  ]
+                };
               });
             </script>
           </template>
         </demo-snippet>
       </vcf-anchor-nav-section>
 
-      <vcf-anchor-nav-section name="Example 2">
+      <vcf-anchor-nav-section id="demo-2" name="Example 2">
         <h2 slot="header" class="hidden">Example 2</h2>
         <demo-snippet>
           <template>
-            <form-progress-viewer></form-progress-viewer>
+            <form-progress-viewer id="example-2"></form-progress-viewer>
             <script>
               window.addEventListener('WebComponentsReady', () => {
-                // Example 2
-              });
-            </script>
-          </template>
-        </demo-snippet>
-      </vcf-anchor-nav-section>
-
-      <vcf-anchor-nav-section name="Example 3">
-        <h2 slot="header" class="hidden">Example 3</h2>
-        <demo-snippet>
-          <template>
-            <form-progress-viewer></form-progress-viewer>
-            <script>
-              window.addEventListener('WebComponentsReady', () => {
-                // Example 3
+                document.querySelector('#example-2').data = {
+                  nodes: [
+                    { id: 1, label: 'Form Page 1', type: 'start' },
+                    { id: 2, label: 'Form Page 2' },
+                    { id: 3, label: 'Form Page 3', type: 'end' },
+                    { id: 4, label: 'Form Page 4' },
+                    { id: 5, label: 'Form Page 5', type: 'end' }
+                  ],
+                  edges: [
+                    { from: '1', to: '2' },
+                    { from: '2', to: '3' },
+                    { from: '2', to: '4' },
+                    { from: '4', to: '5' }
+                  ]
+                };
               });
             </script>
           </template>
