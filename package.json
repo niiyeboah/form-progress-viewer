@@ -1,6 +1,6 @@
 {
   "name": "form-progress-viewer",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "description": "Web Component for visualizing progress in a form.",
   "main": "src/form-progress-viewer.js",
   "author": "Vaadin Ltd",

@@ -100,7 +100,7 @@ import { select, dagreD3 } from '../lib/common-js-modules.esm.js';
     }
 
     static get version() {
-      return '1.0.0';
+      return '0.1.0';
     }
 
     static get properties() {
